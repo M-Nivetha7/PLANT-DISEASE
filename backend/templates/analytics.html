@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <h1>🌿 Plant Disease Detection</h1>
+        <a href="/">Home</a>
+        <a href="/analytics">Analytics</a>
+    </nav>
+
+    <div class="container">
+        <h2>Analytics Dashboard</h2>
+        <p>Total Predictions: {{ total if total is defined else 'N/A' }}</p>
+        <p>Healthy Plants: {{ healthy if healthy is defined else 'N/A' }}</p>
+        <p>Diseased Plants: {{ diseased if diseased is defined else 'N/A' }}</p>
+
+        <h3>Breakdown by disease:</h3>
+        <ul>
+        {% if rows %}
+            {% for r in rows %}
+                <li>{{ r.disease }}: {{ r.count }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No data available.</li>
+        {% endif %}
+        </ul>
+
+        <h3>Model Accuracy:</h3>
+        <p>Check terminal after training for final accuracy score.</p>
+    </div>
+
+</body>
+</html>
